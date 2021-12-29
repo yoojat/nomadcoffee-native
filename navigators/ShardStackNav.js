@@ -10,6 +10,7 @@ import { Image } from 'react-native';
 import Login from '../screens/LogIn';
 import { useReactiveVar } from '@apollo/client';
 import { isLoggedInVar } from '../apollo';
+import Likes from '../screens/Likes';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,10 +53,11 @@ export default function SharedStackNav({ screenName }) {
         isLoggedInVar() ? (
           <Stack.Screen name='Me' component={Me} />
         ) : (
-          <Stack.Screen name='Profile' component={Profile} />
+          <Stack.Screen name={'LogIn'} component={Login} />
         )
       ) : null}
       <Stack.Screen name='Photo' component={Photo} />
+      <Stack.Screen name='Likes' component={Likes} />
     </Stack.Navigator>
   );
 }

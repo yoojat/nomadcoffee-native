@@ -1,41 +1,78 @@
 import { gql, useQuery } from '@apollo/client';
-import React from 'react';
-import { Text, View } from 'react-native';
-import { COMMENT_FRAGMENT, PHOTO_FRAGMENT } from '../fragments';
+import React, { useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import Photo from '../components/Photo';
+import ScreenLayout from '../components/ScreenLayout';
+import { PHOTO_FRAGMENT } from '../fragments';
 
-const FEED_QUERY = gql`
-  query seeFeed {
-    seeFeed {
-      ...PhotoFragment
-      user {
-        username
-        avatar
+const SEE_COFFEE_SHOPS = gql`
+  query seeCoffeeShops($offset: Int) {
+    seeCoffeeShops(offset: $offset) {
+      coffeeShops {
+        id
+        name
+        user {
+          id
+        }
+        photos {
+          id
+          url
+        }
+        categorys {
+          id
+          name
+        }
       }
-      caption
-      comments {
-        ...CommentFragment
-      }
-      createdAt
-      isMine
     }
   }
-  ${PHOTO_FRAGMENT}
-  ${COMMENT_FRAGMENT}
 `;
 
 export default function Feed({ navigation }) {
-  const { data } = useQuery(FEED_QUERY);
-  console.log(data);
+  const { data, loading, refetch, fetchMore, error } = useQuery(
+    SEE_COFFEE_SHOPS,
+    {
+      variables: {
+        offset: 0,
+      },
+    }
+  );
+  // if (data) {
+  //   console.log({ data });
+  //   // console.log(data.seeCoffeeShops.coffeeShops);
+  // }
+
+  const renderPhoto = (item) => {
+    return <Photo {...item} />;
+  };
+
+  const refresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+  const [refreshing, setRefreshing] = useState(false);
   return (
-    <View
-      style={{
-        backgroundColor: 'black',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Text style={{ color: 'white' }}>Feed</Text>
-    </View>
+    <ScreenLayout loading={loading}>
+      <FlatList
+        onEndReachedThreshold={0.02}
+        onEndReached={async () => {
+          console.log(data?.seeCoffeeShops?.coffeeShops.length);
+          const result = await fetchMore({
+            variables: {
+              offset: data?.seeCoffeeShops?.coffeeShops.length,
+            },
+          });
+          console.log({ result });
+          return result;
+        }}
+        refreshing={refreshing}
+        onRefresh={refresh}
+        style={{ width: '100%' }}
+        showsVerticalScrollIndicator={false}
+        data={data?.seeCoffeeShops.coffeeShops}
+        keyExtractor={(photo) => '' + photo.id}
+        renderItem={renderPhoto}
+      />
+    </ScreenLayout>
   );
 }
