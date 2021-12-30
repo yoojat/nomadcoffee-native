@@ -4824,10 +4824,10 @@
   "resolved" "https://registry.npmjs.org/react-freeze/-/react-freeze-1.0.0.tgz"
   "version" "1.0.0"
 
-"react-hook-form@^7.22.4":
-  "integrity" "sha512-F8Ezs55y0PwLhBncOrJoRSP02SgDzDDeM/N4wNDTAYlettg2ZSJuEp20cbJUL7BZj8fvKVeFySPbXF145b0I6w=="
-  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.22.4.tgz"
-  "version" "7.22.4"
+"react-hook-form@^7.22.5":
+  "integrity" "sha512-Q2zaeQFXdVQ8l3hcywhltH+Nzj4vo50wMVujHDVN/1Xy9IOaSZJwYBXA2CYTpK6rq41fnXviw3jTLb04c7Gu9Q=="
+  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.22.5.tgz"
+  "version" "7.22.5"
 
 "react-is@^16.13.0", "react-is@^16.7.0", "react-is@^16.8.1", "react-is@>= 16.8.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="

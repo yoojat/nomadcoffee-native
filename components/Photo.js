@@ -44,8 +44,6 @@ const ExtraContainer = styled.View`
 `;
 
 function Photo({ id, item }) {
-  console.log({ item });
-
   const navigation = useNavigation();
   const { width, height } = useWindowDimensions();
   const [imageHeight, setImageHeight] = useState(height - 450);

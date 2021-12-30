@@ -36,10 +36,6 @@ export default function Feed({ navigation }) {
       },
     }
   );
-  // if (data) {
-  //   console.log({ data });
-  //   // console.log(data.seeCoffeeShops.coffeeShops);
-  // }
 
   const renderPhoto = (item) => {
     return <Photo {...item} />;
@@ -56,13 +52,11 @@ export default function Feed({ navigation }) {
       <FlatList
         onEndReachedThreshold={0.02}
         onEndReached={async () => {
-          console.log(data?.seeCoffeeShops?.coffeeShops.length);
           const result = await fetchMore({
             variables: {
               offset: data?.seeCoffeeShops?.coffeeShops.length,
             },
           });
-          console.log({ result });
           return result;
         }}
         refreshing={refreshing}

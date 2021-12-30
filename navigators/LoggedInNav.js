@@ -43,15 +43,6 @@ export default function LoggedInNav() {
         {() => <ShardStackNav screenName='Search' />}
       </Tabs.Screen>
       <Tabs.Screen
-        name='CameraScreen'
-        component={View}
-        options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <TabIcon iconName={'camera'} color={color} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name='NotificationsScreen'
         options={{
           tabBarIcon: ({ focused, color, size }) => (

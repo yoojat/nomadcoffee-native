@@ -56,8 +56,6 @@ export default function SharedStackNav({ screenName }) {
           <Stack.Screen name={'LogIn'} component={Login} />
         )
       ) : null}
-      <Stack.Screen name='Photo' component={Photo} />
-      <Stack.Screen name='Likes' component={Likes} />
     </Stack.Navigator>
   );
 }
